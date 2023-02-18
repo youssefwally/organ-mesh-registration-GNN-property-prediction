@@ -1,0 +1,70 @@
+program: train.py
+method: bayes
+metric:
+  goal: minimize
+  name: test_score
+parameters:
+  use_registered_data:
+    values:
+      - "true"
+      - "false"
+    distribution: categorical
+  use_input_encoder:
+    values:
+      - "true"
+    distribution: categorical
+  num_train_samples: 
+    value: 3000
+  num_test_samples: 
+    value: 300
+    distribution: int_uniform
+  hidden_channels:
+    max: 512
+    min: 64
+    distribution: int_uniform
+  use_scaled_data:
+    values:
+      - "true"
+      - "false"
+    distribution: categorical
+  eval_method:
+    values:
+      - mae
+    distribution: categorical
+  num_layers:
+    max: 6
+    min: 2
+    distribution: int_uniform
+  batch_size:
+    max: 8
+    min: 2
+    distribution: int_uniform
+  optimizer:
+    values:
+      - adam
+    distribution: categorical
+  enc_feats:
+    max: 512
+    min: 16
+    distribution: int_uniform
+  organ:
+    values:
+      - liver
+      - pancreas
+    distribution: categorical
+  model:
+    values:
+      - baseline
+    distribution: categorical
+  layer:
+    values: ['sageconv','gcn']
+  task:
+    values:
+      - age_prediction
+  loss:
+    values:
+      - mae
+  lr:
+    max: 1e-2
+    min: 1e-6
+    distribution: log_uniform_values

@@ -1,0 +1,38 @@
+program: train.py
+method: bayes
+metric:
+  name: validation_loss
+  goal: minimize
+early_terminate:
+  type: hyperband
+  eta: 2
+  max_iter: 10
+  s: 3
+  
+parameters:
+  lr:
+    min: 0.0001
+    max: 0.1
+  optimizer:
+    values: ["adam"] #, "sgd"
+  batch_size:
+    value: 32
+  max_epoch:
+    value: 50
+  num_layers:
+    values: [3, 4, 5, 6, 7, 8]
+  use_input_encoder: 
+    value: True
+  num_train_samples: 
+    value: 3000
+  num_test_samples: 
+    value: 300
+  layer:
+    values: ['sageconv','gcn']
+  hidden_channels:
+    values: [32, 64, 128, 256, 512]
+  enc_feats:
+    values: [32, 64, 128, 256, 512]
+  model:
+    value: fsgnet
+
